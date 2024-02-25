@@ -1,11 +1,14 @@
 import RestarantCard from "./RestarantCard";
-import {resObj} from "../utils/apiData";
 
 import {useState, useEffect} from "react";
 import Shimmer from "./ShimmerUI";
 import WhatsOnMind from "./whatsOnMind";
 import {Link} from "react-router-dom";
 // import WhatsOnMind from "./WhatsOnMind";
+import useAppBody from "../utils/useAppBody";
+import useApiBody from "../utils/useAppBody";
+import {RESTAURANT_LIST_API} from "../utils/constants";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const AppBody = () => {
 
@@ -14,30 +17,24 @@ const AppBody = () => {
     const [filteredRestra, setFilteredRestra] = useState([]);
     const [whatsonmind, setWhatsOnMind] = useState([]);
     const [searchText, setSearchText] = useState("");
-    // console.log("Body rendered");
-    
 
-    // const listOfRestaurnts = arr[0];
-    // const setListOfRestaurnts = arr[1];
 
-    // console.log(listOfRestaurnts);
-    // console.log(setListOfRestaurnts);
+    //const apiUrl = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4875418&lng=78.3953462&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+    const apiUrl = RESTAURANT_LIST_API;
+    const { data: apiData, loading, error } = useApiBody(apiUrl);
+
     useEffect(() => {
-        fetchData();
-    }, []);
+    if (apiData) {
+        setListOfRestaurnts(apiData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestra(apiData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setWhatsOnMind(apiData?.data?.cards[0].card?.card?.gridElements?.infoWithStyle?.info);
+    }
+    }, [apiData]);
 
-    const fetchData = async () => {
-        //const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4875418&lng=78.3953462&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.1350091&lng=79.62879149999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
-        const jsonData = await data.json();
-
-        console.log(jsonData);
-        
-        // Optional Chaining 
-        setListOfRestaurnts(jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestra(jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setWhatsOnMind(jsonData?.data?.cards[0].card?.card?.gridElements?.infoWithStyle?.info);
-        // console.log(jsonData);
+    const onlineStatus = useOnlineStatus();
+    
+    if(onlineStatus === false) {
+        return <h1>Looks like you're Offline!!! Please check your internet connection</h1>
     }
     
     return listOfRestaurnts.length === 0 ? (<Shimmer />) : (
@@ -82,7 +79,7 @@ const AppBody = () => {
                 <button className="filter-btn" onClick={() => {
                     // filter logic to show above 4 star rating restaraunts only
                     const filteredList = listOfRestaurnts.filter((res) => res.info.avgRating > 4);
-                    console.log(filteredList);
+                    // console.log(filteredList);
                     //setListOfRestaurnts(filteredList);
                     setFilteredRestra(filteredList);
                 }}>Top Rated Restaurants</button>

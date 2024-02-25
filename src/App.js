@@ -8,6 +8,15 @@ import RestrarauntMenu from "./components/RestrarauntMenu";
 import{createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
 import Error from "./components/Error";
 import Footer from "./components/Footer";
+import Grocery from "./components/Grocery";
+import Grocery from "./components/Grocery";
+
+// chunking
+// code splitting
+// dynamic bundling
+// css modules
+// tree shaking
+// lazy loading
 
 const AppLayout = () => {
     return (
@@ -36,6 +45,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/contact",
                 element: <Contact />
+            },
+            {
+                path: "/grocery",
+                element: <Grocery />
             },
             {
                 path: "/restraraunts/:resId",

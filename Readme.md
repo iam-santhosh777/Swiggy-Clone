@@ -39,5 +39,4 @@ eg: linkedin, swiggy, facebook, youtube, netflix, are using shimmer ui effect wh
 - when user sees a shimmer Ui. it make make some psychological impact on them
 - we're giving a fake impression on UI
 
-# what is conditional rendering?
-
+===> hooks is a kind of utility function  which helps us to write less code and clean code, they are like helper functions

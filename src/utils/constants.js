@@ -5,3 +5,5 @@ export const LOGO_URL = "https://img.freepik.com/free-psd/vintage-pizzeria-logo-
 //export const Menu_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.4875418&lng=78.3953462&restaurantId=29286&catalog_qa=undefined&submitAction=ENTER"
 
 export const Menu_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.4875418&lng=78.3953462&catalog_qa=undefined&restaurantId="
+
+export const RESTAURANT_LIST_API = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4875418&lng=78.3953462&page_type=DESKTOP_WEB_LISTING"
