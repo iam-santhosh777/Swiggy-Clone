@@ -5,7 +5,8 @@ class UserClass extends React.Component{
         this.state = {
             myInfo: {
                 name: "some epic name",
-                location: "some epic location",  
+                location: "some epic location",
+
                 avatar_url: ""
             }
         }
@@ -14,7 +15,7 @@ class UserClass extends React.Component{
     }
 
     async componentDidMount(){
-        const fetchData = await fetch("https://api.github.com/users/iam-santhosh777");
+        const fetchData = await fetch("https://api.github.com/users/mallikarjun92");
         const responseData = await fetchData.json();
         console.log(responseData);
         this.setState({
@@ -34,7 +35,7 @@ class UserClass extends React.Component{
         const {name, location, avatar_url} = this.state.myInfo;
         console.log(this.props.name + "class render called");
         
-        debugger;
+        // debugger;
         return(
             <div className="user-class">
                 

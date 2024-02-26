@@ -12,15 +12,19 @@ const textStyle = {
 const RestarantCard = (props) => {
     const {resData} = props;
     //const {resName, cuisine} = props;
-    const {name, cuisines, avgRating, cloudinaryImageId, costForTwo} = resData?.info;
+    const {name, cuisines, avgRating, cloudinaryImageId, costForTwo, areaName} = resData?.info;
     
     return(
-        <div className="restro-card" style={styleCard}>
-            <img className="rescard-img" alt="rescardImg" src={ CDN_URL + cloudinaryImageId}/>
-            <h3>{name}</h3>
-            <p style={textStyle}>{cuisines.join(", ")}</p>
+        <div className="m-4 w-[250px] h-[300px] rounded-xl hover:scale-95 hover:box-shadow-md" style={styleCard}>
+            <img className="w-[250px] h-[150px] bg-size-cover rounded-xl" alt="rescardImg" src={ CDN_URL + cloudinaryImageId}/>
+            <div className="mx-2">
+            <h3 className="font-bold text-green-700">{name}</h3>
+            <p style={textStyle} className="size-auto">{cuisines.join(", ")}</p>
             <p style={textStyle}>{avgRating} Stars</p>
             <p style={textStyle}>{costForTwo}</p>
+            <p style={textStyle}>{areaName}</p>
+            </div>
+           
         </div>
     )
 }

@@ -18,7 +18,6 @@ const AppBody = () => {
     const [whatsonmind, setWhatsOnMind] = useState([]);
     const [searchText, setSearchText] = useState("");
 
-
     //const apiUrl = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4875418&lng=78.3953462&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
     const apiUrl = RESTAURANT_LIST_API;
     const { data: apiData, loading, error } = useApiBody(apiUrl);
@@ -39,23 +38,23 @@ const AppBody = () => {
     
     return listOfRestaurnts.length === 0 ? (<Shimmer />) : (
         <div className="app-body">
-            <div className="whatsonmind-container">
-            <h3 className="whatonmind-text">Chandu, What's on your Mind?</h3>
-                
-            <div className="items-list">
+            <div>
+            <h3 className="p-3 ml-4 text-gray-800 text-lg"><span className="text-green-700 font-bold text-2xl">Chandu</span>, What's on your Mind?</h3>
+            <div className="flex overflow-auto no-scrollbar mx-4">
+            <div className="w-40 flex gap-4">
             {
                 whatsonmind.map((item, index) => {
                     return(
                         <WhatsOnMind key={index} itemList = {item}/>
                     )
-                    
                 })
             }
             </div>
             </div>
+            </div>
             <div className="filter">
-            <div className="search">
-                <input type="text" className="search-box" value={searchText} onChange={(e) => {
+            <div className="flex justify-center">
+                <input type="text" className="border-black border-2 rounded-md mx-10" value={searchText} onChange={(e) => {
                     setSearchText(e.target.value);
                 }}></input>
                 <button onClick={() => {
@@ -70,22 +69,20 @@ const AppBody = () => {
                         // clear the input field
                         setSearchText("");
                         setFilteredRestra(listOfRestaurnts);
-                    }
-                
-                    
-                }}>Search</button>
+                    } 
+                }} className="bg-green-200 px-4 py-1 rounded-lg">Search</button>
 
-            </div>
-                <button className="filter-btn" onClick={() => {
+                <button className="bg-blue-200 px-4 py-1 rounded-lg mx-4" onClick={() => {
                     // filter logic to show above 4 star rating restaraunts only
                     const filteredList = listOfRestaurnts.filter((res) => res.info.avgRating > 4);
                     // console.log(filteredList);
                     //setListOfRestaurnts(filteredList);
                     setFilteredRestra(filteredList);
                 }}>Top Rated Restaurants</button>
-                
             </div>
-            <div className="restro-container">
+                 
+            </div>
+            <div className="flex mx-10 flex-wrap">
                 {
                     filteredRestra.map((restra) => {
                         return(
@@ -93,7 +90,6 @@ const AppBody = () => {
                         )
                     })
                 }
-
             </div>
         </div>
     )
