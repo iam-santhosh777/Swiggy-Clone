@@ -40,3 +40,11 @@ eg: linkedin, swiggy, facebook, youtube, netflix, are using shimmer ui effect wh
 - we're giving a fake impression on UI
 
 ===> hooks is a kind of utility function  which helps us to write less code and clean code, they are like helper functions
+
+
+date: 28/02/2024
+const { name, cuisines, costForTwoMessage, areaName, avgRatingString } = resInfo?.cards[0]?.card?.card?.info;
+  // console.log(resInfo?.cards[0].card.card.info);
+  const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+  
+  const categories = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c => c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");

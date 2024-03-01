@@ -1,6 +1,5 @@
-import RestarantCard from "./RestarantCard";
-
-import {useState, useEffect} from "react";
+import RestarantCard, {RestraCardOpenStatus} from "./RestarantCard";
+import {useState, useEffect, useContext} from "react";
 import Shimmer from "./ShimmerUI";
 import WhatsOnMind from "./whatsOnMind";
 import {Link} from "react-router-dom";
@@ -9,7 +8,7 @@ import useAppBody from "../utils/useAppBody";
 import useApiBody from "../utils/useAppBody";
 import {RESTAURANT_LIST_API} from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
-
+import UserContext from "../utils/userContext";
 const AppBody = () => {
 
     // State Variable = super power variable
@@ -18,6 +17,10 @@ const AppBody = () => {
     const [whatsonmind, setWhatsOnMind] = useState([]);
     const [searchText, setSearchText] = useState("");
 
+    // const RestarantCardStatusText = RestarantCardStatus(RestarantCard);
+    const IsRestrarauntOpenedStatus = RestraCardOpenStatus(RestarantCard);
+
+    // console.log("Body rendered", listOfRestaurnts);
     //const apiUrl = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4875418&lng=78.3953462&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
     const apiUrl = RESTAURANT_LIST_API;
     const { data: apiData, loading, error } = useApiBody(apiUrl);
@@ -35,6 +38,8 @@ const AppBody = () => {
     if(onlineStatus === false) {
         return <h1>Looks like you're Offline!!! Please check your internet connection</h1>
     }
+
+    const {setUserName, loggedInUser} = useContext(UserContext);
     
     return listOfRestaurnts.length === 0 ? (<Shimmer />) : (
         <div className="app-body">
@@ -79,6 +84,8 @@ const AppBody = () => {
                     //setListOfRestaurnts(filteredList);
                     setFilteredRestra(filteredList);
                 }}>Top Rated Restaurants</button>
+                <label>User Name: </label>
+                <input className="border-black border rounded-md mx-10 px-2" onChange={(e) => {setUserName(e.target.value)}} value={loggedInUser}/>
             </div>
                  
             </div>
@@ -86,7 +93,17 @@ const AppBody = () => {
                 {
                     filteredRestra.map((restra) => {
                         return(
-                            <Link key={restra.info.id} to={"/restraraunts/" + restra.info.id}><RestarantCard resData={restra} /></Link>
+                            <Link 
+                            key={restra.info.id} 
+                            to={"/restraraunts/" + restra.info.id}>
+                                
+                                {
+                                    /**if restraraunt is opened then show open label on it */
+                                    restra.info.isOpen ? <IsRestrarauntOpenedStatus resData = {restra}/> : <RestarantCard resData = {restra}/>
+                                }
+                                
+                                {/* <RestarantCard resData={restra} /> */}
+                                </Link>
                         )
                     })
                 }
