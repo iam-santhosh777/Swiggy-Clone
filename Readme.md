@@ -60,11 +60,16 @@ const { name, cuisines, costForTwoMessage, areaName, avgRatingString } = resInfo
  - Jest - npx jest -- init
  - Install Jsdom Library
  - install @babel/preset-react to make jsx work in test cases
- - include @babel/preset-react inside my babel configuration
+ - include @babel/preset-react inside my babel configuration > inside babel.config.js file > presets: [
+      ['@babel/preset-react', {runtime: 'automatic'}]
+    ],
+  - install another one @testing-library/jest-dom
 
 
 # some extra stuff
 
 _ _ => is called 'dunder' the meaning itself says "double underscore" (__dunder__)
 
+1) some developers love to write test cases inside describe
+2) some developers names it as "it" instead of test, and try to start always with "should" first in a string
 
