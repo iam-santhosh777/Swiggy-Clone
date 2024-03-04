@@ -48,3 +48,23 @@ const { name, cuisines, costForTwoMessage, areaName, avgRatingString } = resInfo
   const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
   
   const categories = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c => c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+
+# Know about immer
+
+# setting up Testing in our App
+ - install React Testing Library
+ - Installed Jest
+ - Installed Babel dependencies
+ - Configure Babel
+ - Configure Parcel Config file to disable default babel transpilation
+ - Jest - npx jest -- init
+ - Install Jsdom Library
+ - install @babel/preset-react to make jsx work in test cases
+ - include @babel/preset-react inside my babel configuration
+
+
+# some extra stuff
+
+_ _ => is called 'dunder' the meaning itself says "double underscore" (__dunder__)
+
+
