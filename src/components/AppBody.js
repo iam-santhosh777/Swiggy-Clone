@@ -4,7 +4,6 @@ import Shimmer from "./ShimmerUI";
 import WhatsOnMind from "./whatsOnMind";
 import {Link} from "react-router-dom";
 // import WhatsOnMind from "./WhatsOnMind";
-import useAppBody from "../utils/useAppBody";
 import useApiBody from "../utils/useAppBody";
 import {RESTAURANT_LIST_API} from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
