@@ -9,7 +9,7 @@ const RestarantCard = (props) => {
     const {resData} = props;
     const userInfo = useContext(UserContext); 
     // console.log(userInfo);  
-    console.log(resData);
+    // console.log(resData);
 
 
     //const {resName, cuisine} = props;
@@ -17,7 +17,7 @@ const RestarantCard = (props) => {
 
     
     return(
-        <div className="m-4 w-[250px] h-[300px] rounded-xl hover:scale-95 hover:box-shadow-md">
+        <div data-testid="resCard" className="m-4 w-[250px] h-[300px] rounded-xl hover:scale-95 hover:box-shadow-md">
             <img className="w-[250px] h-[150px] bg-size-cover rounded-xl" alt="rescardImg" src={ CDN_URL + cloudinaryImageId}/>
             <div className="mx-2">
             <h3 className="font-bold text-green-700">{name}</h3>

@@ -15,7 +15,7 @@ const ItemList = ({items}) => {
         <div>
             <div>
                 {
-                    items.map((item) => <div key={item.card.info.id} className="py-3 m-2 border-b-2 border-gray-300 flex" >
+                    items.map((item) => <div data-testid="foodItems" key={item.card.info.id} className="py-3 m-2 border-b-2 border-gray-300 flex" >
                         <div className="flex flex-col gap-1 text-start w-9/12">
                         <span className="font-normal font-lg">{item.card.info.name}</span>
                         <span className="font-mono">{"₹ " + (item.card.info.price/100 || item.card.info.defaultPrice/100)}</span>

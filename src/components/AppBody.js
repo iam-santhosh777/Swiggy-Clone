@@ -1,9 +1,10 @@
 import RestarantCard, {RestraCardOpenStatus} from "./RestarantCard";
 import {useState, useEffect, useContext} from "react";
 import Shimmer from "./ShimmerUI";
-import WhatsOnMind from "./whatsOnMind";
+import WhatsOnMind from "./WhatsOnMind";
 import {Link} from "react-router-dom";
 // import WhatsOnMind from "./WhatsOnMind";
+import useAppBody from "../utils/useAppBody";
 import useApiBody from "../utils/useAppBody";
 import {RESTAURANT_LIST_API} from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -61,7 +62,7 @@ const AppBody = () => {
                 <input type="text" className="border-black border-2 rounded-md mx-10" value={searchText} onChange={(e) => {
                     setSearchText(e.target.value);
                 }}></input>
-                <button onClick={() => {
+                <button data-testid="search-btn" onClick={() => {
                     // filter the restaraunt cards and update the UI
                     // search txt
                     const fileredRestra = listOfRestaurnts.filter(
