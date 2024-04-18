@@ -84,8 +84,8 @@ const AppBody = () => {
                     //setListOfRestaurnts(filteredList);
                     setFilteredRestra(filteredList);
                 }}>Top Rated Restaurants</button>
-                <label>User Name: </label>
-                <input className="border-black border rounded-md mx-10 px-2" onChange={(e) => {setUserName(e.target.value)}} value={loggedInUser}/>
+                {/* <label>User Name: </label>
+                <input className="border-black border rounded-md mx-10 px-2" onChange={(e) => {setUserName(e.target.value)}} value={loggedInUser}/> */}
             </div>
                  
             </div>
